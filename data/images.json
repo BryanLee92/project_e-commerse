@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "tag": "Casual Shirts",
+    "name": "Long Sleeve Shirt",
+    "description": "Wear all day long",
+    "price": "RM 79.99",
+    "imageUrl": "/image/tag/wallpaperflare.com_wallpaper.jpg"
+  },
+  {
+    "id": 2,
+    "tag": "Casual Shirts",
+    "name": "White Checkered Shirt",
+    "description": "Comfortable, contoured knit. Soft, 100% cotton.",
+    "price": "RM 125.20",
+    "imageUrl": "/image/tag/checkered shirt.jpg"
+  },
+  {
+    "id": 3,
+    "tag": "Casual Shirts",
+    "name": "Dark Gray Shirt",
+    "description": "Flattering ribbed ‘3D knit’. Lovely pointelle design.",
+    "price": "RM 65.80",
+    "imageUrl": "/image/tag/grayish.jpg"
+  },
+  {
+    "id": 4,
+    "tag": "Casual Shirts",
+    "name": "Black Shirt",
+    "description": "Generous cut for easy layering.",
+    "price": "RM 80.50",
+    "imageUrl": "/image/tag/black shirt.jpg"
+  },
+  {
+    "id": 5,
+    "tag": "Casual Shirts",
+    "name": "Orange Shirt",
+    "description": "Wraps you up in itch-free softness. Comfort that conforms to your body in a contoured cut.",
+    "price": "RM 69.99",
+    "imageUrl": "/image/tag/BLACKPINK, Lisa (BLACKPINK), K-pop.jpg"
+  },
+  {
+    "id": 6,
+    "tag": "Casual Shirts",
+    "name": "Cute Shirt",
+    "description": "A comfy cardigan in smooth fabric. A versatile item for any style or occasion. UPF25.",
+    "price": "RM 79.99",
+    "imageUrl": "/image/tag/women's white long-sleeved top, twice tzuyu, Asian, K-pop.jpg"
+  },
+  {
+    "id": 7,
+    "tag": "Casual Shirts",
+    "name": "White Turtle Neck Shirt",
+    "description": "Updated high-neck design for even greater comfort. Sumptuously soft and non-itchy.",
+    "price": "RM 290.50",
+    "imageUrl": "/image/tag/turutle neck.jpg"
+  },
+  {
+    "id": 8,
+    "tag": "Casual Shirts",
+    "name": "Strip Shirt",
+    "description": "Very soft and non-itchy. Specially brushed for a light and cozy feel.",
+    "price": "RM 79.99",
+    "imageUrl": "/image/tag/striped shirt.jpg"
+  },
+  {
+    "id": 9,
+    "tag": "Shorts",
+    "name": "Checkered Pants",
+    "description": "Very soft. Specially light and cozy feel.",
+    "price": "RM 25.99",
+    "imageUrl": "/image/tag/Pants.jpg"
+  }
+]

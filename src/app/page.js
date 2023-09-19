@@ -1,12 +1,12 @@
-import Header from './component/header';
-import '../../styles/global.css';
+"use client";
+import MainPage from "./mainPage/mainPage";
+// CSS
+import "../../styles/global.css";
 
-export default function Home({pageProps}) {
-  console.log(pageProps);
+export default function Home({ pageProps }) {
   return (
     <main>
-      <Header {...pageProps}/>
-      <h1>goodbye</h1>
+      <MainPage {...pageProps} />
     </main>
-  )
+  );
 }

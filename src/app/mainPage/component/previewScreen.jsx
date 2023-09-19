@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function PreviewScreen({ image, toggleViewBtn }) {
+const PreviewScreen=({ image, toggleViewBtn })=>{
   return (
     <>
       <div className="keen-slider__slide">
@@ -29,3 +29,4 @@ export default function PreviewScreen({ image, toggleViewBtn }) {
     </>
   );
 }
+export default PreviewScreen;

@@ -163,6 +163,13 @@ button {
   justify-content: space-between;
   align-items: center;
 }
+.product-item__flexButton {
+  background-color: #ffffff60;
+  padding: 0.3em 0.5em;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+}
 .product-item__button {
   padding: 10px;
   background-color: #545f71;
@@ -184,6 +191,7 @@ button {
 /* model for view */
 .Model-div__flex {
   display: flex;
+  z-index: 9999;
 }
 .Model-div__image {
   position: relative;
@@ -210,8 +218,14 @@ button {
 /* CSS for the wishlist table */
 .wishlist-table {
   width: 100%;
-  border-collapse: collapse;
+  height: 100%;
 }
+
+.wishlist-table th {
+  border-bottom: 1px solid #ccc;
+  top: 0;
+}
+
 .wishlist-table > p {
   text-align: center;
   margin: 10% auto;
@@ -220,20 +234,31 @@ button {
 .wishlist-table th,
 .wishlist-table td {
   padding: 10px;
-  text-align: left;
+  text-align: center;
 }
 
 /* Fixed table header */
 .wishlist-table thead {
   position: sticky;
   top: 0;
-  background-color: #ffffff; /* Add your preferred background color */
+  background-color: #ffffff;
   z-index: 1;
 }
 
 /* Space between table cells */
 .wishlist-table tbody td {
-  border: 1px solid #ccc; /* Add border for spacing */
+  border-bottom: 1px solid #ccc;
+}
+.wishlist-table__flexCart {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.RemoveFromWishlist {
+  border: none;
+  font-size: 2em;
+  background-color: transparent !important;
 }
 
 @media (min-width: 280px) {

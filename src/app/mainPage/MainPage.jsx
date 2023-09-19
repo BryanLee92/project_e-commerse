@@ -5,13 +5,15 @@ import Header from "./component/header";
 import Index from "./component/index";
 import imageData from "../../../data/images.json";
 
-export default function Home({ pageProps }) {
+const mainPage=({ pageProps })=>{
   // search
   const [searchText, setSearchText] = useState();
   // toggle mobile menu
   const [isNavigateVisible, setIsNavigateVisible] = useState(false);
   // Wishlist toggle button
   const [isWishlistModal, setIsWishlistModal] = useState(false);
+  // Wishlist toggle button
+  const [isCartModal, setIsCartModal] = useState(false);
 
   function toggleSearchText(e) {
     var search = e.toLowerCase();
@@ -21,22 +23,26 @@ export default function Home({ pageProps }) {
   const toggleNavigateVisibility = () => {
     setIsNavigateVisible(!isNavigateVisible);
   };
+
   return (
     <div>
       <Header
         toggleNavigate={toggleNavigateVisibility}
         toggleSearchText={toggleSearchText}
-        imageData={imageData}
         setIsWishlistModal={setIsWishlistModal}
+        setIsCartModal={setIsCartModal}
       />
       <Index
-        {...pageProps}
         isNavigateVisible={isNavigateVisible}
         searchText={searchText}
         imageData={imageData}
         setIsWishlistModal={setIsWishlistModal}
         isWishlistModal={isWishlistModal}
+        setIsCartModal={setIsCartModal}
+        isCartModal={isCartModal}
+        {...pageProps}
       />
     </div>
   );
 }
+export default mainPage;

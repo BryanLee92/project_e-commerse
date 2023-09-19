@@ -12,14 +12,16 @@ import Product from "./product";
 import Model from "./model";
 import Error from "./error";
 
-export default function Index({
+const Index = ({
   isNavigateVisible,
-  imageData,
   searchText,
+  imageData,
   setIsWishlistModal,
   isWishlistModal,
+  setIsCartModal,
+  isCartModal,
   ...pageProps
-}) {
+}) => {
   //sidebar content
   const [isActive, setActive] = useState("Casual Shirts");
   const [tag, setTag] = useState("casual shirts");
@@ -32,6 +34,7 @@ export default function Index({
   const [productData, setProductData] = useState();
 
   const [wishlist, setWishlist] = useState([]);
+  const [cart, setCart] = useState([]);
 
   // keen slider plugins
   const [sliderRef, slider] = useKeenSlider(
@@ -89,18 +92,40 @@ export default function Index({
       <button
         className="icon-btn"
         onClick={() => {
-          if (isInWishlist) {
-            alert("Product is in the wishlist");
-          } else {
+          if (!isInWishlist) {
             setWishlist([...wishlist, data]);
-            alert("Product added successfully");
+          } else {
+            handleRemoveFromWishlist(data.id);
           }
         }}
       >
         <FontAwesomeIcon
           icon={faHeart}
           size="2xl"
-          style={{ color: isInWishlist ? "red" : "#545f7f" }}
+          style={{ color: isInWishlist ? "red" : "#171c24" }}
+        />
+      </button>
+    );
+  };
+
+  // cart icon button
+  const cartBtnIcon = (data) => {
+    const isInCart = cart.some((product) => product.data.id === data.id);
+    return (
+      <button
+        className="icon-btn"
+        onClick={() => {
+          if (!isInCart) {
+            setCart([...cart, { data, quantity: 1 }]);
+          } else {
+            handleRemoveFromCart(data.id);
+          }
+        }}
+      >
+        <FontAwesomeIcon
+          icon={faCartShopping}
+          size="2xl"
+          style={{ color: isInCart ? "blue" : "#171c24" }}
         />
       </button>
     );
@@ -110,6 +135,12 @@ export default function Index({
   const handleRemoveFromWishlist = (id) => {
     const updatedWishlist = wishlist.filter((item) => item.id !== id);
     setWishlist(updatedWishlist);
+  };
+
+  // remove item from cart
+  const handleRemoveFromCart = (id) => {
+    const updatedCart = cart.filter((item) => item.data.id !== id);
+    setCart(updatedCart);
   };
 
   //filter product from searchtext and tag
@@ -175,6 +206,7 @@ export default function Index({
                   {...pageProps}
                   toggleViewBtn={toggleViewBtn}
                   item={item}
+                  cartBtnIcon={cartBtnIcon}
                   wishlistBtnIcon={wishlistBtnIcon}
                 />
               </div>
@@ -196,7 +228,15 @@ export default function Index({
         isWishlistModal={isWishlistModal}
         wishlist={wishlist}
         handleRemoveFromWishlist={handleRemoveFromWishlist}
+        toggleViewBtn={toggleViewBtn}
+        cartBtnIcon={cartBtnIcon}
+        setIsCartModal={setIsCartModal}
+        isCartModal={isCartModal}
+        setCart={setCart}
+        cart={cart}
+        handleRemoveFromCart={handleRemoveFromCart}
       />
     </>
   );
-}
+};
+export default Index;

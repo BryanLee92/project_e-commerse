@@ -1,17 +1,21 @@
 import React from "react";
 import Image from "next/image";
 
-export default function wishlist({
+const wishlist=({
   item,
+  index,
   handleRemoveFromWishlist,
-}) {
+  toggleViewBtn,
+  cartBtnIcon,
+})=>{
   return (
     <>
-      <td>
+      <td>{index + 1}</td>
+      <td style={{ cursor: "pointer" }} onClick={() => toggleViewBtn(item)}>
         <Image
           src={item.imageUrl}
           alt={item.name}
-          width={150}
+          width={200}
           height={150}
           quality={100}
           className="wishlist-table__image"
@@ -23,10 +27,17 @@ export default function wishlist({
       <td>"{item.description}"</td>
       <td>{item.price}</td>
       <td>
-        <button onClick={() => handleRemoveFromWishlist(item.id)}>
-          &times;
-        </button>
+        <div className="wishlist-table__flexCart">
+          {cartBtnIcon(item)}
+          <button
+            className="RemoveFromWishlist"
+            onClick={() => handleRemoveFromWishlist(item.id)}
+          >
+            &times;
+          </button>
+        </div>
       </td>
     </>
   );
 }
+export default wishlist;

@@ -1,5 +1,5 @@
 import React from "react";
-export default function Sidebar({ tag, isActive }) {
+const Sidebar=({ tag, isActive })=>{
   const options = [
     "Casual Shirts",
     "Sweatshirts",
@@ -50,3 +50,4 @@ export default function Sidebar({ tag, isActive }) {
     </div>
   );
 }
+export default Sidebar;

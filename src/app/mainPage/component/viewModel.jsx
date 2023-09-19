@@ -1,10 +1,11 @@
 import React from "react";
 import Image from "next/image";
 
-export default function ViewBtn({
+const ViewBtn=({
   productData,
   wishlistBtnIcon,
-}) {
+  cartBtnIcon,
+})=>{
   return (
     <>
       <div className="Model-div__flex">
@@ -26,6 +27,7 @@ export default function ViewBtn({
             <div className="Product-icon">
               <h2 className="Product-price">{productData.price}</h2>
               {wishlistBtnIcon(productData)}
+              {cartBtnIcon(productData)}
             </div>
           </div>
         </div>
@@ -33,3 +35,4 @@ export default function ViewBtn({
     </>
   );
 }
+export default ViewBtn;

@@ -7,11 +7,12 @@ import {
   faBars,
 } from "@fortawesome/free-solid-svg-icons";
 
-export default function Header({
+const Header=({
   toggleNavigate,
   toggleSearchText,
   setIsWishlistModal,
-}) {
+  setIsCartModal
+})=>{
   return (
     <header className="header-container">
       <div className="header-component">
@@ -35,7 +36,7 @@ export default function Header({
             />
           </button>
           {/* cart */}
-          <button className="icon-btn">
+          <button className="icon-btn" onClick={() => setIsCartModal(true)}>
             <FontAwesomeIcon
               icon={faCartShopping}
               size="2xl"
@@ -59,3 +60,4 @@ export default function Header({
     </header>
   );
 }
+export default Header;

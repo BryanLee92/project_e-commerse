@@ -1,5 +1,10 @@
 import React from "react";
-export default function Product({ toggleViewBtn, wishlistBtnIcon, item }) {
+const Product=({
+  toggleViewBtn,
+  wishlistBtnIcon,
+  cartBtnIcon,
+  item,
+})=>{
   return (
     <>
       <img
@@ -10,8 +15,9 @@ export default function Product({ toggleViewBtn, wishlistBtnIcon, item }) {
       <div className="product-item__status">
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <h4>{item.name}</h4>
-          <div>
+          <div className="product-item__flexButton">
             {wishlistBtnIcon(item)}
+            {cartBtnIcon(item)}
           </div>
         </div>
         <br />
@@ -30,3 +36,4 @@ export default function Product({ toggleViewBtn, wishlistBtnIcon, item }) {
     </>
   );
 }
+export default Product;

@@ -1,12 +1,13 @@
 "use client";
-import MainPage from "./mainPage/mainPage";
+import MainPage from "./mainPage/MainPage";
 // CSS
 import "../../styles/global.css";
 
-export default function Home({ pageProps }) {
+const Home=({ pageProps })=>{
   return (
     <main>
       <MainPage {...pageProps} />
     </main>
   );
 }
+export default Home;

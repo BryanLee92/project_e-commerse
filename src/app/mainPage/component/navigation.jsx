@@ -1,4 +1,4 @@
-export default function navigation() {
+const navigation=()=>{
   return (
     <div className="navigate-component">
       <div className="navigate-ul">
@@ -21,3 +21,4 @@ export default function navigation() {
     </div>
   );
 }
+export default navigation;

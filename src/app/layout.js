@@ -9,10 +9,11 @@ export const poppins = Poppins({
   weight: "400",
 })
 
-export default function RootLayout({ children }) {
+const RootLayout=({ children })=>{
   return (
     <html lang="en">
       <body className={poppins.className}>{children}</body>
     </html>
   )
 }
+export default RootLayout;

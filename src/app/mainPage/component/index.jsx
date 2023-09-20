@@ -28,6 +28,8 @@ const Index = ({
 
   //filttering main product content
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const [totalProducts, setTotalProducts] = useState();
+  console.log("total Products:", totalProducts);
 
   //model
   const [viewModel, setViewModel] = useState(false);
@@ -160,6 +162,7 @@ const Index = ({
           const itemTag = item.tag.toLowerCase();
           return itemTag.includes(tag);
         });
+    setTotalProducts(filtered.length);
     setFilteredProducts(filtered);
   };
 

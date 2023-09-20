@@ -147,7 +147,9 @@ const Model = ({
                     <th></th>
                     <th></th>
                     <th>Name:</th>
+                    <th></th>
                     <th>Quantity:</th>
+                    <th></th>
                     <th>Description:</th>
                     <th>Price:</th>
                     <th></th>

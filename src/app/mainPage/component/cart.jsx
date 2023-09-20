@@ -6,7 +6,7 @@ const cart = ({
   handleRemoveFromCart,
   toggleViewBtn,
   addQuantity,
-  reduceQuantity
+  reduceQuantity,
 }) => {
   return (
     <>
@@ -28,11 +28,21 @@ const cart = ({
         <strong>{item.data.name}</strong>
       </td>
       <td>
-        <div>
-          <button onClick={() => reduceQuantity(item)}>-</button>
-          {item.quantity}
-          <button onClick={() => addQuantity(item)}>+</button>
-        </div>
+        <button
+          className="RemoveFromWishlist"
+          onClick={() => reduceQuantity(item)}
+        >
+          -
+        </button>
+      </td>
+      <td>{item.quantity}</td>
+      <td>
+        <button
+          className="RemoveFromWishlist"
+          onClick={() => addQuantity(item)}
+        >
+          +
+        </button>
       </td>
       <td>"{item.data.description}"</td>
       <td>RM {item.data.price}</td>

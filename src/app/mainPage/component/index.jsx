@@ -75,7 +75,7 @@ const Index = ({
     ]
   );
 
-  // change price
+  // change price (array1.reduce((accumulator, currentValue) => accumulator + currentValue, initialValue);)
   const newPrice =(updatedCart)=>{
     const newTotalPrice = updatedCart.reduce((total, item) => {
       return total + item.data.price * item.quantity;
@@ -83,42 +83,38 @@ const Index = ({
     setTotalPrice(newTotalPrice);
   }
   
-  //add quantity
-  const addQuantity = (data) => {
+  const indexSearch = (data) => {
     const existingItemIndex = cart.findIndex(
       (product) => product.data.id === data.data.id
     );
     if (existingItemIndex !== -1) {
       const updatedCart = [...cart];
       const currentItem = updatedCart[existingItemIndex];
-      if (currentItem.quantity < currentItem.data.total) {
-        currentItem.quantity += 1;
-        setCart(updatedCart);
-        newPrice(updatedCart);
-      }
+      return [updatedCart, currentItem, existingItemIndex];
+    }
+  }
+
+  //add quantity
+  const addQuantity = (data) => {
+    const detailItem = indexSearch(data);
+    if (detailItem[1].quantity < detailItem[1].data.total) {
+      detailItem[1].quantity += 1;
+      setCart(detailItem[0]);
+      newPrice(detailItem[0]);
     }
   };
 
   //reduce and remove if nill
   const reduceQuantity = (data) => {
-    const existingItemIndex = cart.findIndex(
-      (product) => product.data.id === data.data.id
-    );
-    if (existingItemIndex !== -1) {
-      const updatedCart = [...cart];
-      const currentItem = updatedCart[existingItemIndex];
-      if (currentItem.quantity > 0) {
-        const updatedItem = { ...currentItem };
-        updatedItem.quantity -= 1;
-        if (updatedItem.quantity === 0) {
-          const updatedArray = updatedCart.splice(existingItemIndex, 1);
-          setCart(updatedArray);
-        } else {
-          updatedCart[existingItemIndex] = updatedItem;
-        }
-        setCart(updatedCart);
-        newPrice(updatedCart);
+    const detailItem = indexSearch(data);
+    if (detailItem[1].quantity > 0) {
+      detailItem[1].quantity -= 1;
+      if (detailItem[1].quantity === 0){
+        const updatedArray = detailItem[0].splice(detailItem[2], 1);
+        setCart(updatedArray);
       }
+      setCart(detailItem[0]);
+      newPrice(detailItem[0]);
     }
   };
 
@@ -211,6 +207,27 @@ const Index = ({
     setFilteredProducts(filtered);
   };
 
+  const productProps = {
+    viewModel,
+    setViewModel,
+    productData,
+    wishlist,
+    wishlistBtnIcon,
+    setIsWishlistModal,
+    isWishlistModal,
+    handleRemoveFromWishlist,
+    toggleViewBtn,
+    cartBtnIcon,
+    setIsCartModal,
+    isCartModal,
+    cart,
+    handleRemoveFromCart,
+    totalPrice,
+    addQuantity,
+    reduceQuantity,
+  };
+  
+
   //filter products by isActive attribute or searchtext attribute
   useEffect(() => {
     filterProducts();
@@ -272,23 +289,7 @@ const Index = ({
       </div>
       <Model
         {...pageProps}
-        setViewModel={setViewModel}
-        viewModel={viewModel}
-        productData={productData}
-        wishlistBtnIcon={wishlistBtnIcon}
-        setIsWishlistModal={setIsWishlistModal}
-        isWishlistModal={isWishlistModal}
-        wishlist={wishlist}
-        handleRemoveFromWishlist={handleRemoveFromWishlist}
-        toggleViewBtn={toggleViewBtn}
-        cartBtnIcon={cartBtnIcon}
-        setIsCartModal={setIsCartModal}
-        isCartModal={isCartModal}
-        cart={cart}
-        handleRemoveFromCart={handleRemoveFromCart}
-        totalPrice={totalPrice}
-        addQuantity={addQuantity}
-        reduceQuantity={reduceQuantity}
+        productProps={...productProps}
       />
     </>
   );

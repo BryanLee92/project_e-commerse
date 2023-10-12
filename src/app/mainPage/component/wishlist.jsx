@@ -25,7 +25,7 @@ const wishlist=({
         <strong>{item.name}</strong>
       </td>
       <td>"{item.description}"</td>
-      <td>RM {item.price}</td>
+      <td>RM {item.price.toFixed(2)}</td>
       <td>
         <div className="wishlist-table__flexCart">
           {cartBtnIcon(item)}

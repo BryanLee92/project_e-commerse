@@ -22,7 +22,7 @@ const Product=({
         </div>
         <br />
         <div className="product-item__flexPrice">
-          <h5>{item.price}</h5>
+          <h5>RM {item.price.toFixed(2)}</h5>
           <button
             className="product-item__button"
             onClick={() => {

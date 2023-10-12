@@ -28,8 +28,6 @@ const Index = ({
 
   //filttering main product content
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const [totalProducts, setTotalProducts] = useState();
-  console.log("total Products:", totalProducts);
 
   //model
   const [viewModel, setViewModel] = useState(false);
@@ -37,6 +35,8 @@ const Index = ({
 
   const [wishlist, setWishlist] = useState([]);
   const [cart, setCart] = useState([]);
+
+  const [ totalPrice, setTotalPrice ] = useState(0);
 
   // keen slider plugins
   const [sliderRef, slider] = useKeenSlider(
@@ -74,6 +74,53 @@ const Index = ({
       },
     ]
   );
+
+  // change price
+  const newPrice =(updatedCart)=>{
+    const newTotalPrice = updatedCart.reduce((total, item) => {
+      return total + item.data.price * item.quantity;
+    }, 0);
+    setTotalPrice(newTotalPrice);
+  }
+  
+  //add quantity
+  const addQuantity = (data) => {
+    const existingItemIndex = cart.findIndex(
+      (product) => product.data.id === data.data.id
+    );
+    if (existingItemIndex !== -1) {
+      const updatedCart = [...cart];
+      const currentItem = updatedCart[existingItemIndex];
+      if (currentItem.quantity < currentItem.data.total) {
+        currentItem.quantity += 1;
+        setCart(updatedCart);
+        newPrice(updatedCart);
+      }
+    }
+  };
+
+  //reduce and remove if nill
+  const reduceQuantity = (data) => {
+    const existingItemIndex = cart.findIndex(
+      (product) => product.data.id === data.data.id
+    );
+    if (existingItemIndex !== -1) {
+      const updatedCart = [...cart];
+      const currentItem = updatedCart[existingItemIndex];
+      if (currentItem.quantity > 0) {
+        const updatedItem = { ...currentItem };
+        updatedItem.quantity -= 1;
+        if (updatedItem.quantity === 0) {
+          const updatedArray = updatedCart.splice(existingItemIndex, 1);
+          setCart(updatedArray);
+        } else {
+          updatedCart[existingItemIndex] = updatedItem;
+        }
+        setCart(updatedCart);
+        newPrice(updatedCart);
+      }
+    }
+  };
 
   //tags for product and sidebar content
   const handleItemClick = (tags) => {
@@ -142,6 +189,7 @@ const Index = ({
   // remove item from cart
   const handleRemoveFromCart = (id) => {
     const updatedCart = cart.filter((item) => item.data.id !== id);
+    newPrice(updatedCart);
     setCart(updatedCart);
   };
 
@@ -150,11 +198,9 @@ const Index = ({
     const filtered = searchText
       ? imageData.filter((item) => {
           const itemName = item.name.toLowerCase();
-          const itemPrice = item.price.toLowerCase();
           const itemTag = item.tag.toLowerCase();
           return (
             itemName.includes(searchText) ||
-            itemPrice.includes(searchText) ||
             itemTag.includes(searchText)
           );
         })
@@ -162,7 +208,6 @@ const Index = ({
           const itemTag = item.tag.toLowerCase();
           return itemTag.includes(tag);
         });
-    setTotalProducts(filtered.length);
     setFilteredProducts(filtered);
   };
 
@@ -175,6 +220,11 @@ const Index = ({
   useEffect(() => {
     slider?.current?.update();
   }, [handleItemClick]);
+
+  //auto update when on cart 
+  useEffect(() => {
+    newPrice(cart);
+  }, [cart]);
 
   return (
     <>
@@ -235,9 +285,11 @@ const Index = ({
         cartBtnIcon={cartBtnIcon}
         setIsCartModal={setIsCartModal}
         isCartModal={isCartModal}
-        setCart={setCart}
         cart={cart}
         handleRemoveFromCart={handleRemoveFromCart}
+        totalPrice={totalPrice}
+        addQuantity={addQuantity}
+        reduceQuantity={reduceQuantity}
       />
     </>
   );

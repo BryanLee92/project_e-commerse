@@ -18,44 +18,12 @@ const Model = ({
   cartBtnIcon,
   setIsCartModal,
   isCartModal,
-  setCart,
   cart,
   handleRemoveFromCart,
+  totalPrice,
+  addQuantity,
+  reduceQuantity
 }) => {
-  const addQuantity = (data) => {
-    const existingItemIndex = cart.findIndex(
-      (product) => product.data.id === data.data.id
-    );
-    if (existingItemIndex !== -1) {
-      const updatedCart = [...cart];
-      const currentItem = updatedCart[existingItemIndex];
-      if (currentItem.quantity < currentItem.data.total) {
-        currentItem.quantity += 1;
-        setCart(updatedCart);
-      }
-    }
-  };
-
-  const reduceQuantity = (data) => {
-    const existingItemIndex = cart.findIndex(
-      (product) => product.data.id === data.data.id
-    );
-    if (existingItemIndex !== -1) {
-      const updatedCart = [...cart];
-      const currentItem = updatedCart[existingItemIndex];
-      if (currentItem.quantity > 0) {
-        const updatedItem = { ...currentItem };
-        updatedItem.quantity -= 1;
-        if (updatedItem.quantity === 0) {
-          const updatedArray = updatedCart.splice(existingItemIndex, 1);
-          setCart(updatedArray);
-        } else {
-          updatedCart[existingItemIndex] = updatedItem;
-        }
-        setCart(updatedCart);
-      }
-    }
-  };
 
   return (
     <>
@@ -150,7 +118,6 @@ const Model = ({
                     <th></th>
                     <th>Quantity:</th>
                     <th></th>
-                    <th>Description:</th>
                     <th>Price:</th>
                     <th></th>
                   </tr>
@@ -170,6 +137,10 @@ const Model = ({
                   ))}
                 </tbody>
               </table>
+              <div style={{float: 'right', display: 'flex', gap: '50px'}}>
+                <h4>Total: </h4>
+                <h3>RM {totalPrice.toFixed(2)}</h3>
+              </div>
             </>
           ) : (
             <div className="wishlist-table">

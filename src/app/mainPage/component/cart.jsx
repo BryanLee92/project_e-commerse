@@ -44,12 +44,13 @@ const cart = ({
           +
         </button>
       </td>
-      <td>"{item.data.description}"</td>
-      <td>RM {item.data.price}</td>
+      <td>RM {(item.data.price * item.quantity).toFixed(2)}</td>
       <td>
         <button
           className="RemoveFromWishlist"
-          onClick={() => handleRemoveFromCart(item.data.id)}
+          onClick={() => {
+            handleRemoveFromCart(item.data.id)
+          }}
         >
           &times;
         </button>

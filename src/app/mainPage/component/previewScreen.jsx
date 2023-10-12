@@ -8,21 +8,23 @@ const PreviewScreen=({ image, toggleViewBtn })=>{
           src={image.imageUrl}
           alt={image.name}
           style={{ width: "100%", height: "100%" }}
+          className="img-fluid"
         />
-        <div className="keen-slider__status">
-          <h3>{image.name}</h3>
-          <p>{image.description}</p>
-          <br />
-          <div className="keen-slider__view">
-            <h4>{image.price}</h4>
-            <button
-              className="keen-slider__button"
-              onClick={() => {
-                toggleViewBtn(image);
-              }}
-            >
-              View More
-            </button>
+        <div className="col-sm-12 col-md-100 position-relative">
+          <div className="position-absolute bottom-0 start-0 w-100 text-white bg-dark bg-gradient bg-opacity-25 p-5 keen-slider__status">
+            <h3>{image.name}</h3>
+            <p>{image.description}</p>
+            <div className="keen-slider__view">
+              <h3>RM {image.price.toFixed(2)}</h3>
+              <button
+                className="keen-slider__button"
+                onClick={() => {
+                  toggleViewBtn(image);
+                }}
+              >
+                View More
+              </button>
+            </div>
           </div>
         </div>
       </div>

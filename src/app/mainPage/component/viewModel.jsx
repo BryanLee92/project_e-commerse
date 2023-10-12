@@ -25,7 +25,7 @@ const ViewBtn=({
           <div className="Model-div__description">
             <p className="Product-description">"{productData.description}"</p>
             <div className="Product-icon">
-              <h2 className="Product-price">{productData.price}</h2>
+              <h2 className="Product-price">RM {productData.price.toFixed(2)}</h2>
               {wishlistBtnIcon(productData)}
               {cartBtnIcon(productData)}
             </div>

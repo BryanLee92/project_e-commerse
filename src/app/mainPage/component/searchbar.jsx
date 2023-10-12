@@ -4,7 +4,7 @@ import {
   faMagnifyingGlass
 } from "@fortawesome/free-solid-svg-icons";
 
-export default function searchbar ({toggleSearchText}){
+const searchbar = ({toggleSearchText})=>{
   return (
     <div className="search-container">
       <input
@@ -19,3 +19,5 @@ export default function searchbar ({toggleSearchText}){
     </div>
   );
 };
+
+export default searchbar;

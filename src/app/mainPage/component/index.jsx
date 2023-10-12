@@ -47,10 +47,10 @@ const Index = ({
       (slider) => {
         let timeout;
         let mouseOver = false;
-        function clearNextTimeout() {
+        const clearNextTimeout=()=> {
           clearTimeout(timeout);
         }
-        function nextTimeout() {
+        const nextTimeout=()=> {
           clearTimeout(timeout);
           if (mouseOver) return;
           timeout = setTimeout(() => {
@@ -245,7 +245,6 @@ const Index = ({
           ))}
         </div>
       ) : null}
-
       <div className="main-content__container">
         {/* sidebar */}
         <Sidebar {...pageProps} tag={handleItemClick} isActive={isActive} />

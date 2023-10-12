@@ -15,7 +15,7 @@ const mainPage=({ pageProps })=>{
   // Wishlist toggle button
   const [isCartModal, setIsCartModal] = useState(false);
 
-  function toggleSearchText(e) {
+  const toggleSearchText =(e)=> {
     var search = e.toLowerCase();
     setSearchText(search);
   }

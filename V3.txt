@@ -1,0 +1,20 @@
+conditions rendering for modal √
+** to prevent it to render before it's active 
+
+destructuring array and object
+** const { a, b ,c } = ObjectStuff; / const [ a, b, c ] = arrayStuff
+
+useEffect dependencies √
+** synchronize a component with an external system 
+
+fetch for items that i need in filterProducts() √
+**  react side effect
+
+reusable codes/ functions and component
+
+modules SCSS
+
+bootstrap react tags
+** example => <col> instead of .col-md-10
+
+State management √

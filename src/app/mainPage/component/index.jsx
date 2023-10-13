@@ -93,28 +93,30 @@ const Index = ({
       return [updatedCart, currentItem, existingItemIndex];
     }
   }
-
+  
   //add quantity
   const addQuantity = (data) => {
     const detailItem = indexSearch(data);
-    if (detailItem[1].quantity < detailItem[1].data.total) {
-      detailItem[1].quantity += 1;
-      setCart(detailItem[0]);
-      newPrice(detailItem[0]);
+    const [updatedCart, currentItem, ...rest] = detailItem;
+    if (currentItem.quantity < currentItem.data.total) {
+      currentItem.quantity += 1;
+      setCart(updatedCart);
+      newPrice(updatedCart);
     }
   };
 
   //reduce and remove if nill
   const reduceQuantity = (data) => {
     const detailItem = indexSearch(data);
-    if (detailItem[1].quantity > 0) {
-      detailItem[1].quantity -= 1;
-      if (detailItem[1].quantity === 0){
-        const updatedArray = detailItem[0].splice(detailItem[2], 1);
+    const [updatedCart, currentItem, existingItemIndex] = detailItem;
+    if (currentItem.quantity > 0) {
+      currentItem.quantity -= 1;
+      if (currentItem.quantity === 0){
+        const updatedArray = updatedCart.splice(existingItemIndex, 1);
         setCart(updatedArray);
       }
-      setCart(detailItem[0]);
-      newPrice(detailItem[0]);
+      setCart(updatedCart);
+      newPrice(updatedCart);
     }
   };
 
@@ -227,7 +229,6 @@ const Index = ({
     reduceQuantity,
   };
   
-
   //filter products by isActive attribute or searchtext attribute
   useEffect(() => {
     filterProducts();

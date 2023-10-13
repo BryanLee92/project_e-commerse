@@ -9,37 +9,57 @@ const Model = ({
   productProps
 }) => {
 
+  const {
+    viewModel,
+    setViewModel,
+    productData,
+    wishlist,
+    wishlistBtnIcon,
+    setIsWishlistModal,
+    isWishlistModal,
+    handleRemoveFromWishlist,
+    toggleViewBtn,
+    cartBtnIcon,
+    setIsCartModal,
+    isCartModal,
+    cart,
+    handleRemoveFromCart,
+    totalPrice,
+    addQuantity,
+    reduceQuantity,
+  } = productProps;
+
   return (
     <>
       {/* Preview button */}
-      {productProps.productData ? (
+      {productData ? (
         <Modal
-          isOpen={productProps.viewModel}
+          isOpen={viewModel}
           ariaHideApp={false}
-          onRequestClose={() => productProps.setViewModel(false)}
+          onRequestClose={() => setViewModel(false)}
         >
           <div className="model-close">
-            <button onClick={() => productProps.setViewModel(false)}>&times;</button>
+            <button onClick={() => setViewModel(false)}>&times;</button>
           </div>
           <ViewBtn
-            productData={productProps.productData}
-            wishlistBtnIcon={productProps.wishlistBtnIcon}
-            cartBtnIcon={productProps.cartBtnIcon}
+            productData={productData}
+            wishlistBtnIcon={wishlistBtnIcon}
+            cartBtnIcon={cartBtnIcon}
           />
         </Modal>
       ) : null}
 
       {/* wishlist */}
       <Modal
-        isOpen={productProps.isWishlistModal}
+        isOpen={isWishlistModal}
         ariaHideApp={false}
-        onRequestClose={() => productProps.setIsWishlistModal(false)}
+        onRequestClose={() => setIsWishlistModal(false)}
       >
         <div className="model-close">
-          <button onClick={() => productProps.setIsWishlistModal(false)}>&times;</button>
+          <button onClick={() => setIsWishlistModal(false)}>&times;</button>
         </div>
         <div>
-          {productProps.wishlist.length > 0 ? (
+          {wishlist.length > 0 ? (
             <>
               <h2>Wishlist</h2>
               <hr />
@@ -55,14 +75,14 @@ const Model = ({
                   </tr>
                 </thead>
                 <tbody>
-                  {productProps.wishlist.map((item, index) => (
+                  {wishlist.map((item, index) => (
                     <tr key={item.id}>
                       <WishList
                         item={item}
                         index={index}
-                        toggleViewBtn={productProps.toggleViewBtn}
-                        handleRemoveFromWishlist={productProps.handleRemoveFromWishlist}
-                        cartBtnIcon={productProps.cartBtnIcon}
+                        toggleViewBtn={toggleViewBtn}
+                        handleRemoveFromWishlist={handleRemoveFromWishlist}
+                        cartBtnIcon={cartBtnIcon}
                       />
                     </tr>
                   ))}
@@ -81,15 +101,15 @@ const Model = ({
 
       {/* Cart */}
       <Modal
-        isOpen={productProps.isCartModal}
+        isOpen={isCartModal}
         ariaHideApp={false}
-        onRequestClose={() => productProps.setIsCartModal(false)}
+        onRequestClose={() => setIsCartModal(false)}
       >
         <div className="model-close">
-          <button onClick={() => productProps.setIsCartModal(false)}>&times;</button>
+          <button onClick={() => setIsCartModal(false)}>&times;</button>
         </div>
         <div>
-          {productProps.cart.length > 0 ? (
+          {cart.length > 0 ? (
             <>
               <h2>Cart</h2>
               <hr />
@@ -107,15 +127,15 @@ const Model = ({
                   </tr>
                 </thead>
                 <tbody>
-                  {productProps.cart.map((item, index) => (
+                  {cart.map((item, index) => (
                     <tr key={item.data.id}>
                       <Cart
                         item={item}
                         index={index}
-                        toggleViewBtn={productProps.toggleViewBtn}
-                        handleRemoveFromCart={productProps.handleRemoveFromCart}
-                        addQuantity={productProps.addQuantity}
-                        reduceQuantity={productProps.reduceQuantity}
+                        toggleViewBtn={toggleViewBtn}
+                        handleRemoveFromCart={handleRemoveFromCart}
+                        addQuantity={addQuantity}
+                        reduceQuantity={reduceQuantity}
                       />
                     </tr>
                   ))}
@@ -123,7 +143,7 @@ const Model = ({
               </table>
               <div style={{float: 'right', display: 'flex', gap: '50px'}}>
                 <h4>Total: </h4>
-                <h3>RM {productProps.totalPrice.toFixed(2)}</h3>
+                <h3>RM {totalPrice.toFixed(2)}</h3>
               </div>
             </>
           ) : (

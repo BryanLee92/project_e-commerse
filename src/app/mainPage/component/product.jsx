@@ -13,16 +13,9 @@ const Product=({
         style={{ width: "100%", height: "100%" }}
       />
       <div className="product-item__status">
-        <div style={{ display: "flex", justifyContent: "space-between" }}>
-          <h4>{item.name}</h4>
-          <div className="product-item__flexButton">
-            {wishlistBtnIcon(item)}
-            {cartBtnIcon(item)}
-          </div>
-        </div>
-        <br />
+        <h5>{item.name}</h5>
+        <h5>RM {item.price.toFixed(2)}</h5>
         <div className="product-item__flexPrice">
-          <h5>RM {item.price.toFixed(2)}</h5>
           <button
             className="product-item__button"
             onClick={() => {
@@ -31,6 +24,10 @@ const Product=({
           >
             View More
           </button>
+          <div className="product-item__flexButton">
+            {wishlistBtnIcon(item)}
+            {cartBtnIcon(item)}
+          </div>
         </div>
       </div>
     </>
